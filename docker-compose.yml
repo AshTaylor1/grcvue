@@ -1,0 +1,28 @@
+version: '3.1'
+services:
+  graph:
+    image: docker.viosystems.com:8443/neo4j_nodatavol:grc1
+    environment:
+      - NEO4J_AUTH=none
+    restart: always
+    ports:
+      - 7687:7687
+      - 7474:7474
+
+  grcapi:
+    image: grcapi:latest
+    environment:
+      - viosystems.digital.graphdb=bolt://graph:7687
+      - port=8080
+    restart: always
+    ports:
+      - 9080:8080
+
+  ui:
+    image: grcvue:latest
+    environment:
+      - graphendpoint="http://grcapi:8080/grcapi/"
+      - port=8080
+    restart: always
+    ports:
+      - 8080:8080
