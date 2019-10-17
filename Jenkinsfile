@@ -39,6 +39,19 @@ pipeline {
         //nexusPolicyEvaluation advancedProperties: '', failBuildOnNetworkError: false, iqApplication: selectedApplication('nodegui'), iqScanPatterns: [[scanPattern: '**/node_modules/*.js'], [scanPattern: '**/build/*.js']], iqStage: 'build', jobCredentialsId: 'jenkins-nexus'
       }
     }
+    stage('React Build') {
+      parallel {
+        stage('React Build/Push PIBS') {
+          steps {
+            sh 'docker build -t docker.viosystems.com:8443/nodegui:${BUILD_NUMBER} .'
+            sh 'docker login  docker.viosystems.com:8443 -u ${GITHUB_ASH_CREDS_USR} -p ${GITHUB_ASH_CREDS_PSW}'
+            sh 'docker push   docker.viosystems.com:8443/nodegui:${BUILD_NUMBER}'
+            sh 'docker tag   docker.viosystems.com:8443/nodegui:${BUILD_NUMBER} docker.viosystems.com:8443/nodegui:latest'
+            sh 'docker push   docker.viosystems.com:8443/nodegui:latest'
+          }
+        }
+      }
+    }
   }
   environment {
     GITHUB_ASH_CREDS  = credentials('jenkins-user-for-nexus-repository')
