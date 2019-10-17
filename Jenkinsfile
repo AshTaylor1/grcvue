@@ -38,11 +38,6 @@ pipeline {
         sh 'npm run build'
         //nexusPolicyEvaluation advancedProperties: '', failBuildOnNetworkError: false, iqApplication: selectedApplication('nodegui'), iqScanPatterns: [[scanPattern: '**/node_modules/*.js'], [scanPattern: '**/build/*.js']], iqStage: 'build', jobCredentialsId: 'jenkins-nexus'
       }
-      post {
-        always {
-            junit 'junit.xml'
-        }
-      }
     }
   }
   environment {
