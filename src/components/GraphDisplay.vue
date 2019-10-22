@@ -10,7 +10,7 @@
   import D3Network from 'vue-d3-network'
   import axios from 'axios'
 
-  var url = "http://localhost:9080/grcapi/graph/";
+  var url = "https://demo.viosystems.com/grcapi/graph/";
   if (graphendpoint != undefined)
     url = graphendpoint + 'graph';
 

@@ -26,7 +26,7 @@
       }
     },
     mounted() {
-        var url = "http://localhost:9080/grcapi/services";
+        var url = "https://demo.viosystems.com/grcapi/services";
         if (graphendpoint != undefined)
           url = graphendpoint + 'services';
         // eslint-disable-next-line no-console
