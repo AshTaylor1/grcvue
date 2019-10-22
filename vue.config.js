@@ -1,10 +1,10 @@
 
 
 module.exports = {
-  publicPath: 'grcvue',
+  publicPath: '/grcvue',
   chainWebpack: config => {
     config.plugin('define').tap(args => {
-      args[0].graphendpoint = JSON.stringify(process.env.graphendpoint)
+      args[0].graphendpoint = 'https://demo.viosystems.com/grcapi/'
       return args
     })
   }
