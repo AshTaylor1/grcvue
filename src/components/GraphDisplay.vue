@@ -10,11 +10,9 @@
   import D3Network from 'vue-d3-network'
   import axios from 'axios'
 
-  var url = "https://demo.viosystems.com/grcapi/graph/";
+  var url = "https://demo.viosystems.com/grcapi/";
   if (graphendpoint != undefined)
     url = graphendpoint + 'graph';
-
-
 
   export default {
     name: "GraphDisplay",
@@ -24,6 +22,7 @@
     props: {
       service: {}
     },
+
 
     mounted() {
      this.refreshGraph();
